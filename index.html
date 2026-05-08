@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MecanoRace - Campeonato de Mecanografía</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+    </div>
+
+    <main class="app-container">
+        <!-- WELCOME SCREEN -->
+        <section id="welcome-screen" class="screen active">
+            <h1 class="glitch" data-text="MECANORACE">MECANORACE</h1>
+            <p class="subtitle">Demuestra tu velocidad y precisión.</p>
+            <div class="button-group">
+                <button id="btn-start" class="btn btn-primary">INICIAR CARRERA</button>
+                <button id="btn-show-leaderboard" class="btn btn-secondary">VER RANKING</button>
+            </div>
+        </section>
+
+        <!-- GAME SCREEN -->
+        <section id="game-screen" class="screen hidden">
+            <header class="game-header">
+                <div class="stat-box">
+                    <span class="stat-label">TIEMPO</span>
+                    <span id="stat-time" class="stat-value">0.0s</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">PPM</span>
+                    <span id="stat-wpm" class="stat-value">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">PRECISIÓN</span>
+                    <span id="stat-accuracy" class="stat-value">100%</span>
+                </div>
+            </header>
+            
+            <div class="text-container" id="text-display">
+                <!-- Text characters will be injected here -->
+            </div>
+
+            <div class="game-controls" style="gap: 1rem;">
+                <button id="btn-restart" class="btn btn-icon" title="Reiniciar">↻ REINICIAR</button>
+                <button id="btn-quit" class="btn btn-icon" title="Abandonar">⏏ ABANDONAR</button>
+            </div>
+        </section>
+
+        <!-- RESULT SCREEN -->
+        <section id="result-screen" class="screen hidden">
+            <h2 class="section-title">¡CARRERA TERMINADA!</h2>
+            
+            <div class="results-grid">
+                <div class="result-card highlight">
+                    <span class="result-label">VELOCIDAD</span>
+                    <span id="final-wpm" class="result-value">0 <small>PPM</small></span>
+                </div>
+                <div class="result-card">
+                    <span class="result-label">PRECISIÓN</span>
+                    <span id="final-accuracy" class="result-value">0%</span>
+                </div>
+                <div class="result-card">
+                    <span class="result-label">TIEMPO</span>
+                    <span id="final-time" class="result-value">0s</span>
+                </div>
+            </div>
+
+            <form id="save-score-form" class="save-form">
+                <p>¡Registra tu marca en el ranking!</p>
+                <div class="input-group">
+                    <input type="text" id="player-name" placeholder="Tus Iniciales o Nombre" maxlength="15" required autocomplete="off">
+                    <button type="submit" class="btn btn-primary">GUARDAR</button>
+                </div>
+            </form>
+            <button id="btn-skip-save" class="btn btn-secondary mt-4">VOLVER AL INICIO</button>
+        </section>
+
+        <!-- LEADERBOARD SCREEN -->
+        <section id="leaderboard-screen" class="screen hidden">
+            <h2 class="section-title">TOP CORREDORES</h2>
+            
+            <div class="leaderboard-container">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>POS</th>
+                            <th>NOMBRE</th>
+                            <th>PPM</th>
+                            <th>PRECISIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <!-- Leaderboard rows will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <button id="btn-back-home" class="btn btn-secondary mt-4">VOLVER AL INICIO</button>
+        </section>
+    </main>
+
+    <!-- Custom JS -->
+    <script src="main.js"></script>
+</body>
+</html>
