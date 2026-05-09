@@ -429,9 +429,14 @@ function renderLeaderboard() {
     const top10 = leaderboard.slice(0, 10);
     
     top10.forEach((score, index) => {
+        let rankDisplay = `#${index + 1}`;
+        if (index === 0) rankDisplay = '🥇';
+        else if (index === 1) rankDisplay = '🥈';
+        else if (index === 2) rankDisplay = '🥉';
+
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td>#${index + 1}</td>
+            <td style="font-size: 1.2rem;">${rankDisplay}</td>
             <td>${score.name}</td>
             <td>${score.wpm}</td>
             <td>${score.accuracy}%</td>
