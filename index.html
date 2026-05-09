@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,13 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;700;900&display=swap"
+        rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="background-effects">
         <div class="glow glow-1"></div>
@@ -19,7 +23,9 @@
 
     <main class="app-container">
         <!-- WELCOME SCREEN -->
-        <section id="welcome-screen" class="screen active">
+        <section id="welcome-screen" class="screen active" style="position: relative;">
+            <img src="botanic.png" alt="Botanic Logo" class="main-logo">
+            <a href="admin/index.html" class="admin-link-btn" title="Administración">⚙</a>
             <h1 class="glitch" data-text="MECANORACE">MECANORACE</h1>
             <p class="subtitle">Demuestra tu velocidad y precisión.</p>
             <div class="button-group">
@@ -30,35 +36,54 @@
 
         <!-- GAME SCREEN -->
         <section id="game-screen" class="screen hidden">
-            <header class="game-header">
-                <div class="stat-box">
-                    <span class="stat-label">TIEMPO</span>
-                    <span id="stat-time" class="stat-value">0.0s</span>
+            <header class="game-dashboard" style="position: relative;">
+                <div style="position: absolute; top: 0; right: -50px; display: flex; flex-direction: column; gap: 0.5rem; z-index: 10;">
+                    <button id="btn-restart" class="btn btn-icon" title="Reiniciar" style="padding: 0.5rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border-radius: 8px;">↻</button>
+                    <button id="btn-quit" class="btn btn-icon" title="Abandonar" style="padding: 0.5rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border-radius: 8px;">✕</button>
                 </div>
-                <div class="stat-box">
-                    <span class="stat-label">PPM</span>
-                    <span id="stat-wpm" class="stat-value">0</span>
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <span class="stat-label">TIEMPO</span>
+                        <span id="stat-time" class="stat-value">0.0s</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">RIVAL (MEJOR)</span>
+                        <span id="stat-ghost-wpm" class="stat-value"
+                            style="color: var(--secondary); text-shadow: 0 0 10px var(--secondary-glow);">-</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">PPM</span>
+                        <span id="stat-wpm" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">PRECISIÓN</span>
+                        <span id="stat-accuracy" class="stat-value">100%</span>
+                    </div>
                 </div>
-                <div class="stat-box">
-                    <span class="stat-label">PRECISIÓN</span>
-                    <span id="stat-accuracy" class="stat-value">100%</span>
+
+                <div class="progress-section">
+                    <div class="progress-track" style="margin-bottom: 0.5rem;">
+                        <div id="ghost-progress-bar" class="progress-fill ghost-fill"></div>
+                    </div>
+
+                    <div class="progress-track" style="margin-bottom: 1rem;">
+                        <div id="player-progress-bar" class="progress-fill player-fill"></div>
+                    </div>
+
+                    <!-- Gráfica de neon WPM vs Progreso -->
+                    <canvas id="wpm-chart" width="800" height="100"
+                        style="width: 100%; height: 100px; display: block;"></canvas>
+                </div>
+                <div class="text-container" id="text-display">
+                    <!-- Text characters will be injected here -->
                 </div>
             </header>
-            
-            <div class="text-container" id="text-display">
-                <!-- Text characters will be injected here -->
-            </div>
-
-            <div class="game-controls" style="gap: 1rem;">
-                <button id="btn-restart" class="btn btn-icon" title="Reiniciar">↻ REINICIAR</button>
-                <button id="btn-quit" class="btn btn-icon" title="Abandonar">⏏ ABANDONAR</button>
-            </div>
         </section>
 
         <!-- RESULT SCREEN -->
         <section id="result-screen" class="screen hidden">
             <h2 class="section-title">¡CARRERA TERMINADA!</h2>
-            
+
             <div class="results-grid">
                 <div class="result-card highlight">
                     <span class="result-label">VELOCIDAD</span>
@@ -77,7 +102,8 @@
             <form id="save-score-form" class="save-form">
                 <p>¡Registra tu marca en el ranking!</p>
                 <div class="input-group">
-                    <input type="text" id="player-name" placeholder="Tus Iniciales o Nombre" maxlength="15" required autocomplete="off">
+                    <input type="text" id="player-name" placeholder="Tus Iniciales o Nombre" maxlength="15" required
+                        autocomplete="off">
                     <button type="submit" class="btn btn-primary">GUARDAR</button>
                 </div>
             </form>
@@ -87,7 +113,7 @@
         <!-- LEADERBOARD SCREEN -->
         <section id="leaderboard-screen" class="screen hidden">
             <h2 class="section-title">TOP CORREDORES</h2>
-            
+
             <div class="leaderboard-container">
                 <table class="leaderboard-table">
                     <thead>
@@ -111,4 +137,5 @@
     <!-- Custom JS -->
     <script src="main.js"></script>
 </body>
+
 </html>
